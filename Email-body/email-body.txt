@@ -1,0 +1,13 @@
+Dear Hiring Team,
+
+I hope you are doing well. I am writing to express my interest in the .NET Full Stack Developer position at your organization. With over 1.5+ years of hands-on experience in building secure and scalable web applications using ASP.NET Core, Entity Framework, and SQL Server, along with frontend expertise in {TECHSTACK}. 
+
+I have worked with Boston Logix Technologies and currently deliver freelance solutions including reporting systems, CI/CD pipelines, and real-time charting tools.
+
+Please find my resume attached for your reference. I would be happy to discuss how my skills align with your team’s needs.
+
+Thank you for your time and consideration.
+
+Best regards,
+Mahadev Pimpalkar
+9370938192

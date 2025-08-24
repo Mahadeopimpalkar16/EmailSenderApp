@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/EmailSenderApp/copilot-chat/1030989e/sessions
+/.vs/EmailSenderApp/CopilotIndices/17.14.786.1071
+/.vs/EmailSenderApp/DesignTimeBuild
+/.vs/EmailSenderApp/FileContentIndex
+/.vs/EmailSenderApp/v17
+/bin
+/.vs/ProjectEvaluation
+/obj
