@@ -13,10 +13,10 @@ namespace EmailSenderApp
 
         private readonly Dictionary<string, (string techKeyword, string resumePath, string emailFile)> sources = new()
         {
-            { "general", ("Blazor, Angular, and React", @"..\..\..\Resume\Mahadev_Pimpalkar_Dotnet_Developer.pdf", @"..\..\..\Emails-list\general-recruiters-email-list.txt") },
-            { "blazor",  ("Blazor", @"..\..\..\Resume\Mahadev_Pimpalkar_Dotnet_Developer_Blazor.pdf", @"..\..\..\Emails-list\Blazor\blazor-recruiters-email-list.txt") },
-            { "angular", ("Angular", @"..\..\..\Resume\Mahadev_Pimpalkar_Dotnet_Developer_Angular.pdf", @"..\..\..\Emails-list\Angular\angular-recruiters-email-list.txt") },
-            { "react",   ("ReactJS", @"..\..\..\Resume\Mahadev_Pimpalkar_Dotnet_Developer_React.pdf", @"..\..\..\Emails-list\React\react-recruiters-email-list.txt") }
+            { "general", ("Blazor, Angular, and React", @"..\..\..\Resume\YourName_Dotnet_Developer.pdf", @"..\..\..\Emails-list\general-recruiters-email-list.txt") },
+            { "blazor",  ("Blazor", @"..\..\..\Resume\YourName_Dotnet_Developer_Blazor.pdf", @"..\..\..\Emails-list\Blazor\blazor-recruiters-email-list.txt") },
+            { "angular", ("Angular", @"..\..\..\Resume\YourName_Dotnet_Developer_Angular.pdf", @"..\..\..\Emails-list\Angular\angular-recruiters-email-list.txt") },
+            { "react",   ("ReactJS", @"..\..\..\Resume\YourName_Dotnet_Developer_React.pdf", @"..\..\..\Emails-list\React\react-recruiters-email-list.txt") }
         };
 
         public async Task RunAsync()
@@ -38,16 +38,16 @@ namespace EmailSenderApp
 
                 var rawBody = File.ReadAllText(bodyPath);
                 var emailBody = rawBody.Replace("{TECHSTACK}", tech);
-                
+
                 string subject = string.Empty;
                 if (tech == "Blazor, Angular, and React")
                 {
-                     subject = "Application for the .Net Developer - Immediate Joiner";
+                    subject = "Application for the .Net Developer - Immediate Joiner";
 
                 }
                 else
                 {
-                     subject = $"Application for the .Net {tech} Developer - Immediate Joiner";
+                    subject = $"Application for the .Net {tech} Developer - Immediate Joiner";
                 }
 
 
@@ -57,7 +57,7 @@ namespace EmailSenderApp
 
                     try
                     {
-                        message = CreateEmailMessage("Mahadev Pimpalkar", "mahadeopimpalkar16@gmail.com", email, subject, emailBody, resume);
+                        message = CreateEmailMessage("Your First_Name Last_Name", "Your email address", email, subject, emailBody, resume);
                     }
                     catch (FormatException)
                     {
@@ -97,14 +97,14 @@ namespace EmailSenderApp
             return message;
         }
 
-        private async Task SendEmailAsync( string TechStack, MimeMessage message, string email, string attachmentPath, List<string> processedList)
+        private async Task SendEmailAsync(string TechStack, MimeMessage message, string email, string attachmentPath, List<string> processedList)
         {
             using var client = new SmtpClient();
 
             try
             {
                 await client.ConnectAsync("smtp.gmail.com", 587, false);
-                await client.AuthenticateAsync("mahadeopimpalkar16@gmail.com", "ldipekvdwcvdhxhe");
+                await client.AuthenticateAsync("Your email address", "Your app token");
                 await client.SendAsync(message);
                 Console.WriteLine($"{email} : Sent successfully");
                 LogToExcel(TechStack, successPath, email, "Sent successfully");
@@ -128,7 +128,7 @@ namespace EmailSenderApp
 
         private void LogToExcel(string tecchStack, string filePath, string email, string statusMessage)
         {
-            if(tecchStack.Contains("Blazor, Angular, and React"))
+            if (tecchStack.Contains("Blazor, Angular, and React"))
             {
                 tecchStack = "General";
             }
@@ -141,7 +141,7 @@ namespace EmailSenderApp
             int row = sheet.LastRowUsed()?.RowNumber() ?? 1;
             row += 1;
 
-            sheet.Cell(row,1).Value = tecchStack;
+            sheet.Cell(row, 1).Value = tecchStack;
             sheet.Cell(row, 2).Value = email;
             sheet.Cell(row, 3).Value = statusMessage;
             sheet.Cell(row, 4).Value = timestamp;
@@ -205,7 +205,7 @@ namespace EmailSenderApp
                 DayOfWeek.Thursday => XLColor.LightBlue,
                 DayOfWeek.Friday => XLColor.LightCyan,
                 DayOfWeek.Saturday => XLColor.LightCoral,
-                 _ => XLColor.Linen
+                _ => XLColor.Linen
             };
         }
     }
